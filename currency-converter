@@ -1,0 +1,33 @@
+import inquirer from 'inquirer'
+import Choices from 'inquirer/lib/objects/choices.js';
+const currency : any ={
+    PRK : 280,
+    USD : 1,
+    Yen : 156.52,
+    Pound : 0.80,
+    Euro : 0.93
+};
+
+const  counvert = await inquirer.prompt([{
+    message : `what would you like to counvert ?`,
+    name : `from`,
+    type : `list`,
+    choices : [`PRK`,`Pound`,`USD`,`Yen`,`Euro`]},
+    {
+        name : `to`,
+        type : `list`,
+        choices : [`PRK`,`Pound`,`USD`,`Yen`,`Euro`]
+    },
+    {
+        name: `amount`,
+        type: `number`,
+        message: `Enter you,re amount`
+    }
+    ]);
+
+let fromAmount = currency[counvert.from];    
+let toAmount = currency[counvert.to];
+let amount =counvert.amount;
+let baseAmount = amount / fromAmount ;
+let userAmount = baseAmount * toAmount
+console.log(userAmount);
